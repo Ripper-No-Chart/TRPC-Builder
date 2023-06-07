@@ -1,0 +1,94 @@
+<div>
+  <div class="mt-4 text-center titles">
+    <div>
+      <h1>Payments</h1>
+    </div>
+    <div>
+      <h2>Budget: {{ this.navigation.budget_name }}</h2>
+    </div>    
+  </div>
+
+  <!-- Actions -->
+  <div class="m-3">
+    <button type="button" class="btn btn-success" (click)="this.addPayment()">
+      <i class="fa fa-plus icon" aria-hidden="true"></i> Add
+    </button>
+    <button
+      type="button"
+      class="btn btn-danger ml-2"
+      [routerLink]="['/home']"
+      routerLinkActive="router-link-active"
+    >
+      <i class="fa fa-chevron-left" aria-hidden="true"></i> Back
+    </button>
+  </div>
+
+  <!-- Table -->
+  <div class="mt-4">
+    <table mat-table class="mat-elevation-z8" [dataSource]="dataSource">
+      <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef class="text-center">No.</th>
+        <td mat-cell *matCellDef="let i = index" class="text-center">
+          {{ i + 1 }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <th mat-header-cell *matHeaderCellDef class="text-center">
+          Description
+        </th>
+        <td mat-cell *matCellDef="let data">{{ data.description }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="ammount">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Ammount</th>
+        <td mat-cell *matCellDef="let data" class="text-center">
+          {{ data.ammount }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="created_at">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Created</th>
+        <td mat-cell *matCellDef="let data" class="text-center">
+          {{ data.created_at * 1000 | date : "medium" }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef class="text-center">Actions</th>
+        <td mat-cell *matCellDef="let data" class="text-center">
+          <span
+            (click)="removePayment(data._id, data.ammount)"
+            class="text-danger text-center"
+          >
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </span>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+
+  <!-- No records of payments -->
+  <div *ngIf="!this.dataSource.data.length" class="mt-4 text-center">
+    <h2 class="text-danger">No Payments</h2>
+  </div>
+
+  <!-- Statistics -->
+  <div class="flex-container baseline">
+    <div class="flex-item bg-light">
+      <h4>Budget</h4>
+      <h3 class="font-weight-bold">{{ statistics.budget!.ammount }}</h3>
+    </div>
+    <div class="flex-item bg-light">
+      <h4>Total payments</h4>
+      <h3 class="font-weight-bold">{{ statistics.payments }}</h3>
+    </div>
+    <div class="flex-item bg-success">
+      <h4 class="text-light">Remaining budget</h4>
+      <h3 class="font-weight-bold text-light">{{ statistics.ammount }}</h3>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+.flex-container {
+  width: 80%;
+  .flex-container.baseline {
+    -webkit-align-items: baseline;
+    -ms-flex-align: baseline;
+    align-items: baseline;
+  }
+  padding: 0.1rem;
+  margin: 5rem auto;
+  background-color: gray;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+.flex-item {
+  display: block;
+  margin: 0.1rem;
+  width: 100%;
+}
+.flex-container .flex-item h1,
+.flex-container .flex-item h2,
+.flex-container .flex-item h3,
+.flex-container .flex-item h4 {
+  text-align: center;
+  -webkit-align-self: center;
+  -ms-flex-item-align: center;
+  align-self: center;
+  margin: 0.2rem;
+  color: black;
+}

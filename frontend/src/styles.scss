@@ -1,0 +1,15 @@
+@import url("./scss/all.scss");
+
+html,
+body {
+  height: 100%;
+}
+body {
+  background-color: #212121;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+span:hover {
+  cursor: pointer;
+}

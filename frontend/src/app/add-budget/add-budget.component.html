@@ -1,0 +1,55 @@
+<div>
+  <div class="mt-4 text-center titles">
+    <h1>Add Budget</h1>
+  </div>
+
+  <div class="flex-container baseline text-center w-50">
+    <div class="flex-item bg-light">
+      <form
+        #budgetForm="ngForm"
+        (ngSubmit)="createBudget(budgetForm)"
+        novalidate
+        id="paymentForm"
+      >
+        <div class="form-group pt-3">
+          <mat-form-field floatLabel="always" class="w-75">
+            <mat-label>Description</mat-label>
+            <input
+              matInput
+              [(ngModel)]="budget.description"
+              name="description"
+              id="description"
+              type="text"
+              class="example-right-align"
+              required="true"
+            />
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <mat-form-field floatLabel="always" class="w-75">
+            <mat-label>Ammount</mat-label>
+            <input
+              matInput
+              [(ngModel)]="budget.ammount"
+              name="ammount"
+              id="ammount"
+              type="number"
+              min="0"
+              class="example-right-align"
+              required="true"
+            />
+            <span matTextPrefix>$&nbsp;</span>
+          </mat-form-field>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success">
+            <i class="fa fa-floppy-o" aria-hidden="true"></i> Save budget
+          </button>
+          <button type="button" class="btn btn-danger ml-3" [routerLink]="['/home']" routerLinkActive="router-link-active" >
+            <i class="fa fa-chevron-left" aria-hidden="true"></i> Back
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
